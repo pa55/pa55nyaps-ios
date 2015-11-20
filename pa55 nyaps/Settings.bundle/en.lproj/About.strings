@@ -1,0 +1,23 @@
+/*
+
+PA55 NYAPS iOS
+
+Copyright 2015 Anirban Basu
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+*/
+
+
+"item0-header" = "PA55 NYAPS";
+"item0-footer" = "This app lets you securely store settings using which complex passwords can be generated. For detailed help or for reporting bugs/issues, please see the open-source project website. \n\nhttps://github.com/pa55/pa55nyaps-ios\n\nTo ensure authenticity, always download the app from the Apple App Store link provided on the above website.\n\nA NOTE ON PRIVACY\n\nThis app or its developer(s) do not track your usage. The app developer(s) do not have access to your master secret or the passwords for the encrypted password settings databases that you create. Such settings databases exist only on your device and are transferred, only on your request, over the network in encrypted states. No one can help generate your passwords or recover your password settings if you forget the master secret and the passwords for the encrypted settings databases.\n\nApple and App Store are registered trademarks of Apple Corporation.";

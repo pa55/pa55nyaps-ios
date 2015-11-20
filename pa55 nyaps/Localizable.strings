@@ -1,0 +1,159 @@
+/*
+ 
+ PA55 NYAPS iOS
+ 
+ Copyright 2015 Anirban Basu
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/*
+  Localizable.strings
+  pa55 nyaps
+
+  Created by Anirban Basu on 10/13/15.
+  Copyright © 2015 Anirban Basu. All rights reserved.
+*/
+
+//General
+"app-empty-string" = ""; //should this really be localised?
+"app-title" = "pa55 nyaps: not yet another password storage";
+"app-title-short" = "pa55 nyaps";
+"app-date-time-format" = "yyyy-MM-dd HH:mm";
+"app-ok-label" = "OK";
+"app-cancel-label" = "Cancel";
+"app-confirm-label" = "Confirm";
+"app-continue-label" = "Continue";
+"app-settings-label" = "Settings";
+"app-yes-label" = "Yes";
+"app-no-label" = "No";
+"app-file-write-error-title" = "Problem with saving";
+"app-file-read-error-title" = "Problem with reading";
+"app-input-error-title" = "Input error";
+"app-regex-error-message" = "Input does not match the required format: %@";
+"app-auto-save-title" = "Auto saved %@";
+"app-auto-save-message" = "The unsaved password settings database has been automatically saved to %@.";
+"app-placeholder-password-label" = "Password";
+"app-placeholder-filename-label" = "File name";
+
+//QRCodeViewController
+"qrcodeviewcontroller-title" = "QR code scanner";
+"qrcodeviewcontroller-switch-camera-front" = "Front camera";
+"qrcodeviewcontroller-switch-camera-back" = "Back camera";
+"qrcodeviewcontroller-successful-read" = "Read and copied: %@";
+"qrcodeviewcontroller-encryptedqr-read-error" = "Read error, try again.";
+"qrcodeviewcontroller-enter-master-secret-dialog-title" = "Enter master secret";
+"qrcodeviewcontroller-enter-master-secret-dialog-message" = "The password that you are trying to read from the QR code has been protected by a master secret. Please enter the master secret to continue.";
+"qrcodeviewcontroller-avwarn-title" = "Camera permissions";
+"qrcodeviewcontroller-avwarn-message" = "This app does not have the permission to access the device camera(s). Please navigate to the settings by tapping the 'Preferences' button on the upper left part of the screen to enable the app to access the camera(s).";
+
+//FileListTableViewController
+"filelisttableviewcontroller-settings-button" = "Preferences";
+"filelisttableviewcontroller-back-button" = "Save";
+"filelisttableviewcontroller-last-updated" = "Updated:";
+"filelisttableviewcontroller-table-header-section0" = "Password settings databases";
+"filelisttableviewcontroller-table-footer-section0" = "These protected (encrypted) password settings databases are locally stored on this device. Once you open a password settings database, you can export it (encrypted) to external apps such as message, email or a cloud storage service. Press the + button on the bottom left corner to create a new password settings database.";
+"filelisttableviewcontroller-table-footer-section0-empty" = "Press the + button on the bottom left corner to create a new password settings database.";
+"filelisttableviewcontroller-read-password-prompt" = "Enter password to read the protected password settings database saved in %@.";
+"filelisttableviewcontroller-read-password-prompt-title" = "Read password settings database";
+"filelisttableviewcontroller-new-password-prompt" = "Enter password to protect the new password settings database.";
+"filelisttableviewcontroller-new-password-prompt-title" = "Create new password settings database";
+"filelisttableviewcontroller-write-password-prompt" = "Enter password to save the password settings database to %@. You can also save to a different file by changing the filename if you wish. If a file exists by the filename you choose, it WILL BE overwritten. Should you choose 'Cancel', the changes you made to this password settings database will not be saved.";
+"filelisttableviewcontroller-write-password-prompt-title" = "Save password settings database";
+"filelisttableviewcontroller-delete-file-prompt" = "Are you sure you want to delete the password settings database file %@? This process cannot be undone.";
+"filelisttableviewcontroller-delete-file-prompt-title" = "Delete password settings database?";
+"filelisttableviewcontroller-qrcode-button-title" = "Password from QR code";
+
+//PasswordListTableViewController
+
+"passwordlisttableviewcontroller-back-button" = "Done";
+"passwordlisttableviewcontroller-table-header-section0" = "Password settings";
+"passwordlisttableviewcontroller-table-footer-section0" = "These settings describe parameters to generate passwords. Select a setting to generate its corresponding password. Alternatively, you can edit these settings or delete them by pressing the Edit button on the top right corner. Press the + button on the bottom left corner to create a new password setting.";
+"passwordlisttableviewcontroller-table-footer-section0-empty" = "Press the + button on the bottom left corner to create a new password setting.";
+"passwordlisttableviewcontroller-delete-entry-prompt" = "Are you sure you want to delete the password setting '%@'? This action cannot be undone.";
+"passwordlisttableviewcontroller-delete-entry-prompt-title" = "Delete password setting?";
+
+//PasswordEntryTableViewController
+
+"passwordentrytableviewcontroller-back-button" = "Done";
+"passwordentrytableviewcontroller-cell-label-id" = "Setting identifier (REQUIRED)";
+"passwordentrytableviewcontroller-cell-label-length" = "Length";
+"passwordentrytableviewcontroller-cell-label-issue" = "Issue";
+"passwordentrytableviewcontroller-cell-label-notes" = "Notes";
+"passwordentrytableviewcontroller-cell-label-brackets" = "(){}[]<>";
+"passwordentrytableviewcontroller-cell-label-digits" = "0123456789";
+"passwordentrytableviewcontroller-cell-label-lowercase" = "abcdefghijkmnopqrstuvwxyz";
+"passwordentrytableviewcontroller-cell-label-special" = "!=+@#$?%^&/:*_,";
+"passwordentrytableviewcontroller-cell-label-uppercase" = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+"passwordentrytableviewcontroller-cell-label-user-defined" = "User defined";
+"passwordentrytableviewcontroller-button-genpwd" = "Generate password";
+"passwordentrytableviewcontroller-table-header-section0" = "General";
+"passwordentrytableviewcontroller-table-footer-section0" = "Set the identifier for this password setting, the desired length of the password, the issue number and associated notes.";
+"passwordentrytableviewcontroller-table-header-section2" = "Character types";
+"passwordentrytableviewcontroller-table-footer-section2" = "Choose the type of characters that you want to appear at least once in the generated password.";
+"passwordentrytableviewcontroller-segue-extended-notesvc-title" = "%@ notes";
+
+"passwordentrytableviewcontroller-table-header-section1" = "Notes";
+"passwordentrytableviewcontroller-table-footer-section1" = "Set the name of the service for which the generated password will be used. You may also add a link to the service, your user identifier and any additional information. Changing the information here WILL CHANGE the generated password.";
+"passwordentrytableviewcontroller-cell-label-service-name" = "Name of the service (REQUIRED)";
+"passwordentrytableviewcontroller-cell-label-service-link" = "A URL for the service";
+"passwordentrytableviewcontroller-cell-label-user-id" = "User ID or account number";
+"passwordentrytableviewcontroller-cell-label-additional-info" = "Additional information";
+
+//GeneratePasswordViewController
+"generatepasswordviewcontroller-title" = "Password for %@";
+"generatepasswordviewcontroller-label-master-secret" = "Master secret";
+"generatepasswordviewcontroller-placeholder-master-secret" = "Your master secret is never saved.";
+"generatepasswordviewcontroller-label-generated-password" = "Generated password";
+"generatepasswordviewcontroller-placeholder-generated-password" = "The generated password will appear here.";
+"generatepasswordviewcontroller-label-encrypt-qr" = "Protect the generated QR code";
+"generatepasswordviewcontroller-button-copy-to-clipboard" = "Copy password";
+"generatepasswordviewcontroller-reveal-title1" = "Show";
+"generatepasswordviewcontroller-reveal-title2" = "Hide";
+"generatepasswordviewcontroller-copy-title" = "Copy password";
+"generatepasswordviewcontroller-copy-success-message" = "Successfully copied the password to clipboard. You are now able to paste it into other apps.";
+"generatepasswordviewcontroller-flip-qr" = "Mirror QR";
+
+//AESCryptosystem
+"aescryptosystem-gen-rnd-data-fail-title" = "Error generating random data";
+"aescryptosystem-gen-rnd-data-fail" = "Error generating random byte stream of length %ld bytes.";
+"aescryptosystem-cryptor-fail-title" = "AES cryptosystem failure";
+"aescryptosystem-encrypt-cryptor-fail" = "Failed to create an AES cryptosystem in encryption mode.";
+"aescryptosystem-encrypt-fail" = "Encryption failed with status %d";
+"aescryptosystem-decrypt-hmac-fail-title" = "Integrity check failure";
+"aescryptosystem-decrypt-hmac-fail" = "Either your password is incorrect or the encrypted data is corrupt, or both.";
+"aescryptosystem-decrypt-cryptor-fail" = "Failed to create an AES cryptosystem in decryption mode.";
+"aescryptosystem-decrypt-fail" = "Decryption failed with status %d";
+
+//AESDRBG
+"aesdrbg-update-fail" = "Failed to generate %zu bytes of random data.";
+"aesdrbg-fail-title" = "AES DRBG failure";
+"aesdrbg-invalid-seed" = "Invalid seed for the AES random number generator: %@";
+"aesdrbg-invalid-bound" = "The bound for %s must be between %ld and %ld.";
+
+//PA55Encoder
+"pa55encoder-exception-pwd-length-too-short" = "The required password length %lu is too short to accommodate the minimum number of characters from the selected character classes.";
+"pa55encoder-exception-pwd-length-too-long" = "The required password length %lu is longer than the total number of maximum number of characters from the selected character classes.";
+"pa55encoder-exception-unknown-char-type" = "The character type for the selected character cannot be determined.";
+"pa55encoder-exception-unknown-pref-type" = "The user preference for the selected character cannot be determined.";
+
+//FileManagementHelper
+"filemanagementhelper-error-empty-file" = "The file appears to be empty.";
+
+//NYAPSCore
+"nyapscore-exception-title" = "Password generator error";
+"nyapscore-exception-char-type-choice-required" = "At least one character type must be chosen.";
+"nyapscore-exception-master-secret-empty" = "The master secret cannot be empty.";
+"nyapscore-exception-password-hint-empty" = "The password hint cannot be empty.";
+"nyapscore-exception-desired-length-invalid" = "The desired password length should be a positive integer.";
