@@ -109,4 +109,14 @@
     [_characterTypes removeObject:toRemove];
 }
 
+- (void) removeAllOccurrencesOfCharacterType:(CharacterType) type {
+    __block NSMutableArray<UserPreference *> *toRemove = [[NSMutableArray alloc] init];
+    [_characterTypes enumerateObjectsUsingBlock:^(UserPreference * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if(obj.characterType == type) {
+            [toRemove addObject:obj];
+        }
+    }];
+    [_characterTypes removeObjectsInArray:toRemove];
+}
+
 @end

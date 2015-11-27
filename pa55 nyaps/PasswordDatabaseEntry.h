@@ -48,5 +48,6 @@ static NSString *kPasswordDatabaseEntryDefaultTag = @"new entry";
 - (NSDictionary *) dictionary;
 
 - (void) removeFirstOccurrenceOfCharacterType:(CharacterType) type;
+- (void) removeAllOccurrencesOfCharacterType:(CharacterType) type;
 
 @end

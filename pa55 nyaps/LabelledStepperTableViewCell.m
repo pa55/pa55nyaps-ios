@@ -43,6 +43,8 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
+    
+    [_cellStepper addTarget:_stepperDelegate action:@selector(stepperValueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void) setValue:(double)value {

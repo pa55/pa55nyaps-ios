@@ -61,7 +61,7 @@ static NSString *lcPasswordEntryTableViewControllerCellLabelServiceLink = @"pass
 static NSString *lcPasswordEntryTableViewControllerCellLabelUserId = @"passwordentrytableviewcontroller-cell-label-user-id";
 static NSString *lcPasswordEntryTableViewControllerCellLabelAdditionalInfo = @"passwordentrytableviewcontroller-cell-label-additional-info";
 
-@interface PasswordEntryTableViewController : UITableViewController<UITextFieldDelegate>
+@interface PasswordEntryTableViewController : UITableViewController<UITextFieldDelegate, AppSwitchControlDelegate, AppStepperControlDelegate>
 
 @property (nonatomic, strong) PasswordDatabaseEntry *databaseEntry;
 @property (nonatomic, weak) PasswordDatabase *databaseReference;

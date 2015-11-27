@@ -69,7 +69,7 @@
 "filelisttableviewcontroller-read-password-prompt-title" = "Read password settings database";
 "filelisttableviewcontroller-new-password-prompt" = "Enter password to protect the new password settings database.";
 "filelisttableviewcontroller-new-password-prompt-title" = "Create new password settings database";
-"filelisttableviewcontroller-write-password-prompt" = "Enter password to save the password settings database to %@. You can also save to a different file by changing the filename if you wish. If a file exists by the filename you choose, it WILL BE overwritten. Should you choose 'Cancel', the changes you made to this password settings database will not be saved.";
+"filelisttableviewcontroller-write-password-prompt" = "Enter password to save the password settings database to %@. You can also save to a different file by changing the filename if you wish. If a file exists by the filename you choose, it WILL BE overwritten."; // Should you choose 'Cancel', the changes you made to this password settings database will not be saved.
 "filelisttableviewcontroller-write-password-prompt-title" = "Save password settings database";
 "filelisttableviewcontroller-delete-file-prompt" = "Are you sure you want to delete the password settings database file %@? This process cannot be undone.";
 "filelisttableviewcontroller-delete-file-prompt-title" = "Delete password settings database?";

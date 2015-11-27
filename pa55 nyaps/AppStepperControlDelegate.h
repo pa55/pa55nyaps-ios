@@ -18,33 +18,18 @@
  
  */
 
-
 //
-//  LabelSwitchTableViewCell.m
+//  AppStepperControlDelegate.h
 //  pa55 nyaps
 //
-//  Created by Anirban Basu on 10/8/15.
+//  Created by Anirban Basu on 11/27/15.
 //  Copyright © 2015 Anirban Basu. All rights reserved.
 //
 
-#import "LabelledSwitchTableViewCell.h"
+#import <Foundation/Foundation.h>
 
-@implementation LabelledSwitchTableViewCell
+@protocol AppStepperControlDelegate <NSObject>
 
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-    [_cellSwitch addTarget:_switchDelegate action:@selector(switchChangedValue:) forControlEvents:UIControlEventValueChanged];
-}
-
-- (void) setOn:(BOOL)on {
-    _cellSwitch.on = on;
-}
-
-- (BOOL) on {
-    return _cellSwitch.on;
-}
+- (void) stepperValueChanged:(id) sender;
 
 @end

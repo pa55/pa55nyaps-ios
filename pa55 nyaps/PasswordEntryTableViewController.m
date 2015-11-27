@@ -122,6 +122,7 @@
             case 1:
                 //Length
                 _lengthCell = [tableView dequeueReusableCellWithIdentifier:@"labelledStepperCell" forIndexPath:indexPath];
+                _lengthCell.stepperDelegate = self;
                 _lengthCell.cellLabel.text = NSLocalizedString(lcPasswordEntryTableViewControllerCellLabelLength, nil);
                 _lengthCell.cellStepper.minimumValue = kPasswordLengthMinimum;
                 _lengthCell.cellStepper.maximumValue = kPasswordLengthMaximum;
@@ -133,6 +134,7 @@
             case 2:
                 //Issue number
                 _issueNumberCell = [tableView dequeueReusableCellWithIdentifier:@"labelledStepperCell" forIndexPath:indexPath];
+                _issueNumberCell.stepperDelegate = self;
                 _issueNumberCell.cellLabel.text = NSLocalizedString(lcPasswordEntryTableViewControllerCellLabelIssue, nil);
                 _issueNumberCell.cellStepper.minimumValue = kIssueMinimum;
                 _issueNumberCell.cellStepper.maximumValue = kIssueMaximum;
@@ -149,6 +151,7 @@
         switch (indexPath.row) {
             case 0:
                 _serviceNameCell = [tableView dequeueReusableCellWithIdentifier:@"labelledTextCell" forIndexPath:indexPath];
+                _serviceNameCell.textFieldDelegate = self;
                 _serviceNameCell.cellTextField.placeholder = NSLocalizedString(lcPasswordEntryTableViewControllerCellLabelServiceName, nil);
                 _serviceNameCell.value = _databaseEntry.notes.serviceName;
                 _serviceNameCell.validationRegex = [NSRegularExpression regularExpressionWithPattern:@"^(?!\\s*$).+" options:0 error:NULL];
@@ -157,6 +160,7 @@
                 break;
             case 1:
                 _serviceLinkCell = [tableView dequeueReusableCellWithIdentifier:@"labelledTextCell" forIndexPath:indexPath];
+                _serviceLinkCell.textFieldDelegate = self;
                 _serviceLinkCell.cellTextField.placeholder = NSLocalizedString(lcPasswordEntryTableViewControllerCellLabelServiceLink, nil);
                 _serviceLinkCell.validationRegex = [NSRegularExpression regularExpressionWithPattern:@"^$|^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]" options:0 error:NULL];
                 _serviceLinkCell.navigationItemReference = self.navigationItem;
@@ -165,12 +169,14 @@
                 break;
             case 2:
                 _userIdCell = [tableView dequeueReusableCellWithIdentifier:@"labelledTextCell" forIndexPath:indexPath];
+                _userIdCell.textFieldDelegate = self;
                 _userIdCell.cellTextField.placeholder = NSLocalizedString(lcPasswordEntryTableViewControllerCellLabelUserId, nil);
                 _userIdCell.value = _databaseEntry.notes.userID;
                 cell = _userIdCell;
                 break;
             case 3:
                 _additionalInfoCell = [tableView dequeueReusableCellWithIdentifier:@"labelledTextCell" forIndexPath:indexPath];
+                _additionalInfoCell.textFieldDelegate = self;
                 _additionalInfoCell.cellTextField.placeholder = NSLocalizedString(lcPasswordEntryTableViewControllerCellLabelAdditionalInfo, nil);
                 _additionalInfoCell.value = _databaseEntry.notes.additionalInfo;
                 cell = _additionalInfoCell;
@@ -184,26 +190,31 @@
         switch(indexPath.row) {
             case brackets:
                 _charTypeBracketsCell = [tableView dequeueReusableCellWithIdentifier:@"labelledSwitchCell" forIndexPath:indexPath];
+                _charTypeBracketsCell.switchDelegate = self;
                 _charTypeBracketsCell.cellLabel.text = NSLocalizedString(lcPasswordEntryTableViewControllerCellLabelBrackets, nil);
                 cell = _charTypeBracketsCell;
                 break;
             case digits:
                 _charTypeDigitsCell = [tableView dequeueReusableCellWithIdentifier:@"labelledSwitchCell" forIndexPath:indexPath];
+                _charTypeDigitsCell.switchDelegate = self;
                 _charTypeDigitsCell.cellLabel.text = NSLocalizedString(lcPasswordEntryTableViewControllerCellLabelDigits, nil);
                 cell = _charTypeDigitsCell;
                 break;
             case lowercase:
                 _charTypeLowercaseCell = [tableView dequeueReusableCellWithIdentifier:@"labelledSwitchCell" forIndexPath:indexPath];
+                _charTypeLowercaseCell.switchDelegate = self;
                 _charTypeLowercaseCell.cellLabel.text = NSLocalizedString(lcPasswordEntryTableViewControllerCellLabelLowercase, nil);
                 cell = _charTypeLowercaseCell;
                 break;
             case special:
                 _charTypeSpecialCell = [tableView dequeueReusableCellWithIdentifier:@"labelledSwitchCell" forIndexPath:indexPath];
+                _charTypeSpecialCell.switchDelegate = self;
                 _charTypeSpecialCell.cellLabel.text = NSLocalizedString(lcPasswordEntryTableViewControllerCellLabelSpecial, nil);
                 cell = _charTypeSpecialCell;
                 break;
             case uppercase:
                 _charTypeUppercaseCell = [tableView dequeueReusableCellWithIdentifier:@"labelledSwitchCell" forIndexPath:indexPath];
+                _charTypeUppercaseCell.switchDelegate = self;
                 _charTypeUppercaseCell.cellLabel.text = NSLocalizedString(lcPasswordEntryTableViewControllerCellLabelUppercase, nil);
                 cell = _charTypeUppercaseCell;
                 break;
@@ -274,6 +285,7 @@
 }
 
 
+//This isn't the best place to update the model with the UI because parts of the table get hidden!
 - (void) updateModelWithUI {
     if(_idCell!=nil) {
         _databaseEntry.tag = _idCell.value;
@@ -299,33 +311,33 @@
     }
     /*
     if(_charTypeUserCell!=nil) {
-        [_databaseEntry removeFirstOccurrenceOfCharacterType:user];
+        [_databaseEntry removeAllOccurrencesOfCharacterType:user];
         _databaseEntry.userDefinedCharacters = _charTypeUserCell.value;
         [_databaseEntry.userDefinedCharacters length]>0 ? [_databaseEntry.characterTypes addObject:[[UserPreference alloc] initWithCharacterType:user minimum:1]] : nil;
     }
     */
     if(_charTypeBracketsCell!=nil) {
-        [_databaseEntry removeFirstOccurrenceOfCharacterType:brackets];
+        [_databaseEntry removeAllOccurrencesOfCharacterType:brackets];
         _charTypeBracketsCell.on == YES? [_databaseEntry.characterTypes addObject:[[UserPreference alloc] initWithCharacterType:brackets minimum:1]] : nil;
     }
     
     if(_charTypeDigitsCell!=nil) {
-        [_databaseEntry removeFirstOccurrenceOfCharacterType:digits];
+        [_databaseEntry removeAllOccurrencesOfCharacterType:digits];
         _charTypeDigitsCell.on == YES? [_databaseEntry.characterTypes addObject:[[UserPreference alloc] initWithCharacterType:digits minimum:1]] : nil;
     }
     
     if(_charTypeLowercaseCell!=nil) {
-        [_databaseEntry removeFirstOccurrenceOfCharacterType:lowercase];
+        [_databaseEntry removeAllOccurrencesOfCharacterType:lowercase];
         _charTypeLowercaseCell.on == YES? [_databaseEntry.characterTypes addObject:[[UserPreference alloc] initWithCharacterType:lowercase minimum:1]] : nil;
     }
     
     if(_charTypeSpecialCell!=nil) {
-        [_databaseEntry removeFirstOccurrenceOfCharacterType:special];
+        [_databaseEntry removeAllOccurrencesOfCharacterType:special];
         _charTypeSpecialCell.on == YES? [_databaseEntry.characterTypes addObject:[[UserPreference alloc] initWithCharacterType:special minimum:1]] : nil;
     }
     
     if(_charTypeUppercaseCell!=nil) {
-        [_databaseEntry removeFirstOccurrenceOfCharacterType:uppercase];
+        [_databaseEntry removeAllOccurrencesOfCharacterType:uppercase];
         _charTypeUppercaseCell.on == YES? [_databaseEntry.characterTypes addObject:[[UserPreference alloc] initWithCharacterType:uppercase minimum:1]] : nil;
     }
     
@@ -338,8 +350,59 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    //update every relevant text field in the model with values from here
     if(textField == _idCell.cellTextField) {
         self.navigationItem.title = _idCell.value;
+        _databaseEntry.tag = _idCell.value;
+    }
+    else if(textField == _serviceNameCell.cellTextField) {
+        _databaseEntry.notes.serviceName = _serviceNameCell.value;
+    }
+    else if(textField == _serviceLinkCell.cellTextField) {
+        _databaseEntry.notes.serviceLink = _serviceLinkCell.value;
+    }
+    else if(textField == _userIdCell.cellTextField) {
+        _databaseEntry.notes.userID = _userIdCell.value;
+    }
+    else if(textField == _additionalInfoCell.cellTextField) {
+        _databaseEntry.notes.additionalInfo = _additionalInfoCell.value;
+    }
+    /*
+    else if(textField == _charTypeUserCell.cellTextField) {
+        _databaseEntry.userDefinedCharacters = _charTypeUserCell.value;
+    }
+     */
+}
+
+- (void) switchChangedValue:(id)sender {
+    if(sender == _charTypeBracketsCell.cellSwitch) {
+        [_databaseEntry removeAllOccurrencesOfCharacterType:brackets];
+        _charTypeBracketsCell.on == YES? [_databaseEntry.characterTypes addObject:[[UserPreference alloc] initWithCharacterType:brackets minimum:1]] : nil;
+    }
+    else if(sender == _charTypeDigitsCell.cellSwitch) {
+        [_databaseEntry removeAllOccurrencesOfCharacterType:digits];
+        _charTypeDigitsCell.on == YES? [_databaseEntry.characterTypes addObject:[[UserPreference alloc] initWithCharacterType:digits minimum:1]] : nil;
+    }
+    else if(sender == _charTypeLowercaseCell.cellSwitch) {
+        [_databaseEntry removeAllOccurrencesOfCharacterType:lowercase];
+        _charTypeLowercaseCell.on == YES? [_databaseEntry.characterTypes addObject:[[UserPreference alloc] initWithCharacterType:lowercase minimum:1]] : nil;
+    }
+    else if(sender == _charTypeSpecialCell.cellSwitch) {
+        [_databaseEntry removeAllOccurrencesOfCharacterType:special];
+        _charTypeSpecialCell.on == YES? [_databaseEntry.characterTypes addObject:[[UserPreference alloc] initWithCharacterType:special minimum:1]] : nil;
+    }
+    else if(sender == _charTypeUppercaseCell.cellSwitch) {
+        [_databaseEntry removeAllOccurrencesOfCharacterType:uppercase];
+        _charTypeUppercaseCell.on == YES? [_databaseEntry.characterTypes addObject:[[UserPreference alloc] initWithCharacterType:uppercase minimum:1]] : nil;
+    }
+}
+
+- (void) stepperValueChanged:(id)sender {
+    if(sender == _lengthCell.cellStepper) {
+        _databaseEntry.length = _lengthCell.value;
+    }
+    else if(sender == _issueNumberCell.cellStepper) {
+        _databaseEntry.issue = _issueNumberCell.value;
     }
 }
 

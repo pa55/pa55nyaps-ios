@@ -28,11 +28,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppSwitchControlDelegate.h"
 
 @interface LabelledSwitchTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *cellLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *cellSwitch;
 
 @property (nonatomic) BOOL on;
+@property (weak, nonatomic) id<AppSwitchControlDelegate> switchDelegate;
 
 @end

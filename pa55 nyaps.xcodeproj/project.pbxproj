@@ -55,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6807FB321C08307500931850 /* AppSwitchControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSwitchControlDelegate.h; sourceTree = "<group>"; };
+		6807FB331C0832EA00931850 /* AppStepperControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStepperControlDelegate.h; sourceTree = "<group>"; };
 		6832AA881BDCFF9F00C6D73C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		6841B8001BDCC61000D3C45F /* CameraFocusSquareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFocusSquareView.h; sourceTree = "<group>"; };
 		6841B8011BDCC61000D3C45F /* CameraFocusSquareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraFocusSquareView.m; sourceTree = "<group>"; };
@@ -173,6 +175,8 @@
 				68D5E1151BCA29780042BA5A /* LabelledStepperTableViewCell.m */,
 				68F0AF5F1BCC838200DF79F1 /* DecoratedPasswordEntryTableViewCell.h */,
 				68F0AF601BCC838200DF79F1 /* DecoratedPasswordEntryTableViewCell.m */,
+				6807FB321C08307500931850 /* AppSwitchControlDelegate.h */,
+				6807FB331C0832EA00931850 /* AppStepperControlDelegate.h */,
 			);
 			name = CustomTableViewCells;
 			sourceTree = "<group>";

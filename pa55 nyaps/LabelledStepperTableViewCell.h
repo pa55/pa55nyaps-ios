@@ -28,6 +28,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppStepperControlDelegate.h"
 
 @interface LabelledStepperTableViewCell : UITableViewCell
 
@@ -36,5 +37,7 @@
 
 @property (nonatomic) double value;
 @property (nonatomic) BOOL floatingPointValue;
+
+@property (weak, nonatomic) id<AppStepperControlDelegate> stepperDelegate;
 
 @end
