@@ -18,23 +18,27 @@
  
  */
 
-
 //
-//  CharacterTypeCount.h
-//  pa55v2
+//  GlobalEnums.h
+//  pa55 nyaps
 //
-//  Created by Anirban Basu on 7/2/15.
-//  Copyright (c) 2015 Anirban Basu. All rights reserved.
+//  Created by Anirban Basu on 12/2/15.
+//  Copyright © 2015 Anirban Basu. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#include "GlobalEnums.h"
+#ifndef GlobalEnums_h
+#define GlobalEnums_h
 
-@interface CharacterTypeCount : NSObject
 
-@property (atomic) CharacterType characterType;
-@property (atomic) NSInteger count;
+typedef NS_ENUM(NSInteger, CharacterType) {
+    brackets = 0,
+    digits,
+    lowercase,
+    special,
+    uppercase,
+    user,
+    character_type_count
+};
 
-- (instancetype) initWithCharacterType:(CharacterType) type count: (NSInteger)count;
 
-@end
+#endif /* GlobalEnums_h */

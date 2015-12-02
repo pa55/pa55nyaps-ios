@@ -28,6 +28,7 @@
 //
 
 #import "UserPreference.h"
+#import "PA55Encoder.h"
 
 @implementation UserPreference
 

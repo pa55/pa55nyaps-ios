@@ -82,6 +82,7 @@
 		689C62EF1B6721A90092E015 /* pa55 nyapsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pa55 nyapsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		689C62F41B6721A90092E015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		689CEF6C1BCD39D3009EF2B6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; path = Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
+		68C60B0C1C0EBD4900903B82 /* GlobalEnums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalEnums.h; sourceTree = "<group>"; };
 		68D389A41BCB4D8F00427F19 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
 		68D389A51BCB4D8F00427F19 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
 		68D5E1101BCA26CC0042BA5A /* LabelledSwitchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelledSwitchTableViewCell.xib; sourceTree = "<group>"; };
@@ -288,6 +289,7 @@
 				68E712291BCDD940003EEAC0 /* GlobalConstants.h */,
 				68E7122A1BCDDA5E003EEAC0 /* MiscellaneousUtilities.h */,
 				68E7122B1BCDDA5E003EEAC0 /* MiscellaneousUtilities.m */,
+				68C60B0C1C0EBD4900903B82 /* GlobalEnums.h */,
 			);
 			name = Core;
 			sourceTree = "<group>";

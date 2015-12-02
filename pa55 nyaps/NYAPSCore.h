@@ -39,7 +39,7 @@ static NSString *lcNYAPSCoreExceptionDesiredLengthInvalid = @"nyapscore-exceptio
 
 @interface NYAPSCore : NSObject
 
-+ (NSString *) generateAESDRBGPasswordWithPhrase:(NSString *) phrase hint: (NSString *) hint length:(NSUInteger) length userPreferences:(NSMutableArray *) userPreferences userCharset: (NSString *) userCharset;
++ (NSString *) generateAESDRBGPasswordWithPhrase:(NSString *) phrase hint: (NSString *) hint length:(NSUInteger) length userPreferences:(NSMutableArray<UserPreference *> *) userPreferences userCharset: (NSString *) userCharset;
 
 + (void) testNYAPSCore;
 

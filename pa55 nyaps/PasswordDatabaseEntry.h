@@ -30,6 +30,7 @@
 #import <Foundation/Foundation.h>
 #import "ExtendedNotes.h"
 #import "UserPreference.h"
+#import "PA55Encoder.h"
 
 static NSString *kPasswordDatabaseEntryDefaultTag = @"new entry";
 

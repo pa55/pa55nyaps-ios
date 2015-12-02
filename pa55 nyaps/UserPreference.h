@@ -28,7 +28,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PA55Encoder.h"
+
+#include "GlobalEnums.h"
 
 @interface UserPreference : NSObject
 

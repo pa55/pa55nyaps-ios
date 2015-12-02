@@ -28,12 +28,11 @@
 //
 
 #import "NYAPSCore.h"
-#import "UserPreference.h"
 
 @implementation NYAPSCore
 
 
-+ (NSString *) generateAESDRBGPasswordWithPhrase:(NSString *) phrase hint: (NSString *) hint length:(NSUInteger) length userPreferences:(NSMutableArray *) userPreferences userCharset: (NSString *) userCharset {
++ (NSString *) generateAESDRBGPasswordWithPhrase:(NSString *) phrase hint: (NSString *) hint length:(NSUInteger) length userPreferences:(NSMutableArray<UserPreference *> *) userPreferences userCharset: (NSString *) userCharset {
     //NSDate *methodStart = [NSDate date];
     PA55Encoder *encoder = [[PA55Encoder alloc] initWithCharsets];
     
@@ -80,7 +79,6 @@
     NSData *hPass = [PBKDF2StreamGenerator generateStreamWithPassword:[phrase dataUsingEncoding:NSUTF8StringEncoding] salt:[mutableHint dataUsingEncoding:NSUTF8StringEncoding] length:kCCKeySizeAES128*2];
     
     //NSLog(@"hPass: %@", [hPass base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]);
-    
     NSString* result = [encoder encodeData:hPass outputLength:length];
     //NSDate *methodFinish = [NSDate date];
     //NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];

@@ -28,7 +28,6 @@
 //
 
 #import "PasswordDatabaseEntry.h"
-#import "UserPreference.h"
 
 @implementation PasswordDatabaseEntry
 

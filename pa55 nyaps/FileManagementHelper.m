@@ -165,13 +165,18 @@
             @try {
                 Ciphertext *ciphertext = [[Ciphertext alloc] initWithDictionary:jsonDict];
                 NSString *readFileContents = [_cryptosystem decryptWithHmac:ciphertext password:password];
-                //NSLog(@"%@", readFileContents);
                 
                 NSData *readIn = [readFileContents dataUsingEncoding:NSUTF8StringEncoding];
-                inDb = [[PasswordDatabase alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:readIn options:NSJSONReadingMutableContainers error:&readError]];
+                NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:readIn options:NSJSONReadingMutableContainers error:&readError];
+                //NSLog(@"%@", [dataDict description]);
                 if(readError!=nil) {
                     *errorMessage = [readError localizedDescription];
                     unreadableFile = YES;
+                }
+                else {
+                    //NSLog(@"%@", [dataDict description]);
+                    inDb = [[PasswordDatabase alloc] initWithDictionary:dataDict];
+                    //NSLog(@"%@", [[inDb dictionary] description]);
                 }
             }
             @catch(NSException *exception) {

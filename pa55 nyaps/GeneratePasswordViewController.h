@@ -48,7 +48,7 @@ static NSString *lcGeneratePasswordViewControllerButtonReveal2 = @"generatepassw
 
 @property (nonatomic, strong) NSString *dynamicHint;
 @property (nonatomic, strong) NSString *userCharset;
-@property (nonatomic, strong) NSMutableArray *userPreferences;
+@property (nonatomic, strong) NSMutableArray <UserPreference *> *userPreferences;
 @property (nonatomic) NSUInteger passwordLength;
 
 @end

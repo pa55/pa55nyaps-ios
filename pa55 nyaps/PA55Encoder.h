@@ -29,16 +29,10 @@
 
 #import <Foundation/Foundation.h>
 #import "AESDRBG.h"
+#include "GlobalEnums.h"
 
-typedef NS_ENUM(NSInteger, CharacterType) {
-    brackets = 0,
-    digits,
-    lowercase,
-    special,
-    uppercase,
-    user,
-    character_type_count
-};
+#import "UserPreference.h"
+#import "CharacterTypeCount.h"
 
 static NSString* lcPA55EncoderExceptionPasswordLengthTooShort = @"pa55encoder-exception-pwd-length-too-short";
 static NSString* lcPA55EncoderExceptionPasswordLengthTooLong = @"pa55encoder-exception-pwd-length-too-long";
@@ -62,7 +56,7 @@ static NSUInteger kIssueMaximum = INT32_MAX;
 @interface PA55Encoder : NSObject
 
 @property (nonatomic, strong) NSMutableDictionary* charsets;
-@property (nonatomic, strong) NSMutableArray* userPreferences;
+@property (nonatomic, strong) NSMutableArray<UserPreference*> *userPreferences;
 @property (nonatomic) long shuffleSeed;
 
 - (instancetype) initWithCharsets;
@@ -73,7 +67,7 @@ static NSUInteger kIssueMaximum = INT32_MAX;
 
 + (NSString*) charTypeToString:(CharacterType)charType;
 + (CharacterType) stringToCharType:(NSString *)charType;
-+ (NSMutableArray *) characterTypeCountsSortedByCounts:(NSMutableArray *) data;
-+ (NSMutableArray *) userPreferencesSortedByCharacterType:(NSMutableArray *) data;
++ (NSMutableArray <CharacterTypeCount *> *) characterTypeCountsSortedByCounts:(NSMutableArray <CharacterTypeCount *> *) data;
++ (NSMutableArray <UserPreference *> *) userPreferencesSortedByCharacterType:(NSMutableArray <UserPreference *>*) data;
 
 @end

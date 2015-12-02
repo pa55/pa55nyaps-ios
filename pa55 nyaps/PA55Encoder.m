@@ -28,8 +28,6 @@
 //
 
 #import "PA55Encoder.h"
-#import "CharacterTypeCount.h"
-#import "UserPreference.h"
 #import "NYAPSCore.h"
 
 @implementation PA55Encoder {
@@ -52,7 +50,7 @@
 }
 
 
-- (void) setUserPreferences:(NSMutableArray *)userPreferences {
+- (void) setUserPreferences:(NSMutableArray <UserPreference*> *)userPreferences {
     //userPreferences = [PA55Encoder userPreferencesSortedByCharacterType:userPreferences];
     
     //PRINT the caller function
@@ -73,7 +71,7 @@
     NSMutableDictionary *seen = [[NSMutableDictionary alloc] init];
     for(int i=0; i<userPreferences.count; i++) {
         UserPreference *up = [userPreferences objectAtIndexedSubscript:i];
-        if(up.include) {
+        if(up.minimum > 0) {
             if([seen objectForKey:@(up.characterType)] == nil) {
                 [_userPreferences addObject:up];
                 [seen setObject:@(up.include) forKeyedSubscript:@(up.characterType)];
@@ -140,22 +138,18 @@
     return false;
 }
 
-+ (NSMutableArray *) characterTypeCountsSortedByCounts:(NSMutableArray *) data {
++ (NSMutableArray <CharacterTypeCount *> *) characterTypeCountsSortedByCounts:(NSMutableArray <CharacterTypeCount *> *) data {
     //in-place sort
-    [data sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        CharacterTypeCount *o1 = obj1;
-        CharacterTypeCount *o2 = obj2;
-        return o1.count - o2.count;
+    [data sortUsingComparator:^NSComparisonResult(CharacterTypeCount *obj1, CharacterTypeCount *obj2) {
+        return obj1.count - obj2.count;
     }];
     return data;
 }
 
-+ (NSMutableArray *) userPreferencesSortedByCharacterType:(NSMutableArray *) data {
++ (NSMutableArray <UserPreference *> *) userPreferencesSortedByCharacterType:(NSMutableArray <UserPreference *> *) data {
     //in-place sort
-    [data sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        UserPreference *o1 = obj1;
-        UserPreference *o2 = obj2;
-        return o1.characterType - o2.characterType;
+    [data sortUsingComparator:^NSComparisonResult(UserPreference* obj1, UserPreference* obj2) {
+        return obj1.characterType - obj2.characterType;
     }];
     return data;
 }
@@ -224,11 +218,18 @@
     //second keySize bits
     NSData *shuffleSeed = [randomSeeds subdataWithRange:NSMakeRange(byteOffset, byteOffset)];
     //character type indices cumulative count
-    NSMutableArray *typeIndexCounts = [[NSMutableArray alloc] init];
+    NSMutableArray <CharacterTypeCount *> *typeIndexCounts = [[NSMutableArray alloc] init];
     //current maximum constraints for each character types
     NSMutableDictionary *typeMaximumCounts = [[NSMutableDictionary alloc] init];
     //sum of maximum constraints
     int sumOfMaximumConstraints = 0; //set this to -1 to ignore under allocation check
+    
+    /*
+    NSLog(@"seeds: %@", [randomSeeds description]);
+    [_userPreferences enumerateObjectsUsingBlock:^(UserPreference * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSLog(@"user pref: %@, %d, %d", [PA55Encoder charTypeToString:obj.characterType], obj.minimum, obj.maximum);
+    }];
+    */
 
     //AES deterministic random bits generator
     AESDRBG *characterSelector = [[AESDRBG alloc] initWithRawSeed:characterSelectorSeed];
