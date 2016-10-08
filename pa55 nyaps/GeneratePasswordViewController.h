@@ -29,6 +29,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NYAPSCore.h"
+#import "MiscellaneousUtilities.h"
 
 static NSString *lcGeneratePasswordViewControllerTitle = @"generatepasswordviewcontroller-title";
 static NSString *lcGeneratePasswordViewControllerLabelMasterSecret = @"generatepasswordviewcontroller-label-master-secret";

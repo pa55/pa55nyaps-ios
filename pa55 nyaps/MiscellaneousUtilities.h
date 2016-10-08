@@ -35,6 +35,9 @@
 
 + (instancetype) defaultInstance;
 
+
+@property (nonatomic, strong) NSString *cachedMasterSecret;
+
 - (NSString *) appFormattedDateStringFrom:(NSDate *) date;
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 

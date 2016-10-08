@@ -46,6 +46,7 @@
     return sharedInstance;
 }
 
+
 - (NSString *) appFormattedDateStringFrom:(NSDate *) date {
     return [_dateFormatter stringFromDate:date];
 }

@@ -54,6 +54,7 @@ static NSUInteger kPBKDF2Rounds = 25000;
 static NSInteger kAutoSaveTimeoutInSeconds = 60;
 static NSString *strPreferencesAutoSaveTimeout = @"preferences_AutoSaveTimeout";
 static NSString *strPreferencesAppVersion = @"preferences_AppVersion";
+static NSString *strPreferencesCacheMasterSecret = @"preferences_CacheMasterSecret";
 
 static NSString *segidUnwindToFileList = @"unwindToFileList";
 static NSString *segidUnwindToPasswordList = @"unwindToPasswordList";

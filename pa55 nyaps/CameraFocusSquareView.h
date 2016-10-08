@@ -29,7 +29,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CameraFocusSquareView : UIView
+@interface CameraFocusSquareView : UIView<CAAnimationDelegate>
 
 - (instancetype) initWithTouchPoint:(CGPoint)touchPoint;
 - (void) updatePoint:(CGPoint)touchPoint;

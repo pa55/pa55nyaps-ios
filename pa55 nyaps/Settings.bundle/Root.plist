@@ -10,26 +10,36 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>item0-header</string>
+			<string>security-header</string>
 			<key>FooterText</key>
-			<string>item0-footer</string>
+			<string>security-footer</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>cache-master-secret</string>
+			<key>Key</key>
+			<string>preferences_CacheMasterSecret</string>
+			<key>DefaultValue</key>
+			<false/>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>item1-title</string>
+			<string>auto-save-title</string>
 			<key>Key</key>
 			<string>preferences_AutoSaveTimeout</string>
 			<key>Titles</key>
 			<array>
-				<string>item1-titles-item0</string>
-				<string>item1-titles-item1</string>
-				<string>item1-titles-item2</string>
-				<string>item1-titles-item3</string>
-				<string>item1-titles-item4</string>
-				<string>item1-titles-item5</string>
-				<string>item1-titles-item6</string>
+				<string>autosave-values-item0</string>
+				<string>autosave-values-item1</string>
+				<string>autosave-values-item2</string>
+				<string>autosave-values-item3</string>
+				<string>autosave-values-item4</string>
+				<string>autosave-values-item5</string>
+				<string>autosave-values-item6</string>
 			</array>
 			<key>Values</key>
 			<array>
@@ -48,15 +58,15 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>item2-header</string>
+			<string>general-header</string>
 			<key>FooterText</key>
-			<string>item2-footer</string>
+			<string>general-footer</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
-			<string>item3-title</string>
+			<string>app-version</string>
 			<key>Key</key>
 			<string>preferences_AppVersion</string>
 			<key>DefaultValue</key>
@@ -66,7 +76,7 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>item4-title</string>
+			<string>about-title</string>
 			<key>File</key>
 			<string>About</string>
 		</dict>

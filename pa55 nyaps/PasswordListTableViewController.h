@@ -42,7 +42,7 @@ static NSString *lcPasswordListTableViewControllerTableFooterSection0Empty = @"p
 static NSString *lcPasswordListTableViewControllerDeletEntryPrompt = @"passwordlisttableviewcontroller-delete-entry-prompt";
 static NSString *lcPasswordListTableViewControllerDeletEntryPromptTitle = @"passwordlisttableviewcontroller-delete-entry-prompt-title";
 
-@interface PasswordListTableViewController : UITableViewController
+@interface PasswordListTableViewController : UITableViewController<UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, strong) NSString *passwordDatabaseFile;
 @property (nonatomic, strong) PasswordDatabase *passwordDatabase;

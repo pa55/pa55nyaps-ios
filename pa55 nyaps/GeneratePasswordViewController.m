@@ -86,6 +86,12 @@
     [super viewWillDisappear:animated];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    if([MiscellaneousUtilities defaultInstance].cachedMasterSecret!=nil) {
+        [self generatePasswordWithMasterSecret:[MiscellaneousUtilities defaultInstance].cachedMasterSecret];
+    }
+}
+
 - (void) stateDidChangeForQREncryption: (id) sender {
     if(sender==_uiswchEncryptQR) {
         if(_uitfGeneratedPassword.text.length > 0) {
@@ -150,7 +156,6 @@
 }
 
 - (void) resetGeneratedPasswordState {
-    _uitfMasterSecret.text = NSLocalizedString(lcAppEmptyString, nil);
     _uitfMasterSecret.placeholder = NSLocalizedString(lcGeneratePasswordViewControllerPlaceholderMasterSecret, nil);
     _uitfGeneratedPassword.text = NSLocalizedString(lcAppEmptyString, nil);
     _uitfGeneratedPassword.placeholder = NSLocalizedString(lcGeneratePasswordViewControllerPlaceholderGeneratedPassword, nil);
@@ -160,7 +165,14 @@
     
     [_uitfMasterSecret setSecureTextEntry:YES];
     [_uibReveal setTitle:NSLocalizedString(lcGeneratePasswordViewControllerButtonReveal1, nil) forState:UIControlStateNormal];
-    _uibReveal.enabled = NO;
+    if([MiscellaneousUtilities defaultInstance].cachedMasterSecret!= nil) {
+        _uitfMasterSecret.text = [MiscellaneousUtilities defaultInstance].cachedMasterSecret;
+        _uibReveal.enabled = YES;
+    }
+    else {
+        _uitfMasterSecret.text = NSLocalizedString(lcAppEmptyString, nil);
+        _uibReveal.enabled = NO;
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -197,27 +209,38 @@
         //NSLog(@"User preferences: %@", [_userPreferences description]);
         //NSLog(@"Master secret: %@", newValue);
         //NSLog(@"Hint: '%@', Master secret: '%@'", _dynamicHint, newValue);
-        if(!_shouldNotAttemptToGeneratePassword) { //this is required because a blank value in the master secret while attempting to go back will try to show a warning message, which may be in an undefined state due to the view controller transition
-            @try {
-                NSString *generatedPassword = [NYAPSCore generateAESDRBGPasswordWithPhrase:newValue hint:_dynamicHint length:_passwordLength userPreferences:_userPreferences userCharset:_userCharset];
-                //NSLog(@"Genenerated password: %@", generatedPassword);
-                _uitfGeneratedPassword.text = generatedPassword;
-                _uibbiCopyToClipboard.enabled = YES;
-                _uiimgvQRCode.image = [self generateQRCodeForPassword:generatedPassword usingEncryption:_uiswchEncryptQR.isOn];
-                _uibbiFlipQR.enabled = YES;
+        [self generatePasswordWithMasterSecret:newValue];
+    }
+}
+
+- (void) generatePasswordWithMasterSecret:(NSString *) masterSecret {
+    if(!_shouldNotAttemptToGeneratePassword) { //this is required because a blank value in the master secret while attempting to go back will try to show a warning message, which may be in an undefined state due to the view controller transition
+        @try {
+            NSString *generatedPassword = [NYAPSCore generateAESDRBGPasswordWithPhrase:masterSecret hint:_dynamicHint length:_passwordLength userPreferences:_userPreferences userCharset:_userCharset];
+            //NSLog(@"Genenerated password: %@", generatedPassword);
+            _uitfGeneratedPassword.text = generatedPassword;
+            _uibbiCopyToClipboard.enabled = YES;
+            _uiimgvQRCode.image = [self generateQRCodeForPassword:generatedPassword usingEncryption:_uiswchEncryptQR.isOn];
+            _uibbiFlipQR.enabled = YES;
+            if([[NSUserDefaults standardUserDefaults] boolForKey:strPreferencesCacheMasterSecret]) {
+                [MiscellaneousUtilities defaultInstance].cachedMasterSecret = masterSecret;
             }
-            @catch (NSException *exception) {
-                [self resetGeneratedPasswordState];
-                UIAlertController *warn = [UIAlertController
-                                           alertControllerWithTitle:[exception name]
-                                           message:[exception reason]
-                                           preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *okButton = [UIAlertAction actionWithTitle:NSLocalizedString(lcAppOkLabel, nil) style:UIAlertActionStyleCancel handler:nil];
-                [warn addAction:okButton];
-                dispatch_async(dispatch_get_main_queue(), ^ {
-                    [self.navigationController presentViewController:warn animated:YES completion:nil];
-                });
+            else {
+                [MiscellaneousUtilities defaultInstance].cachedMasterSecret = nil;
             }
+        }
+        @catch (NSException *exception) {
+            [MiscellaneousUtilities defaultInstance].cachedMasterSecret = nil;
+            [self resetGeneratedPasswordState];
+            UIAlertController *warn = [UIAlertController
+                                       alertControllerWithTitle:[exception name]
+                                       message:[exception reason]
+                                       preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okButton = [UIAlertAction actionWithTitle:NSLocalizedString(lcAppOkLabel, nil) style:UIAlertActionStyleCancel handler:nil];
+            [warn addAction:okButton];
+            dispatch_async(dispatch_get_main_queue(), ^ {
+                [self.navigationController presentViewController:warn animated:YES completion:nil];
+            });
         }
     }
 }

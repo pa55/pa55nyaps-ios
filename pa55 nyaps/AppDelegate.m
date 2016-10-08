@@ -156,6 +156,7 @@
     //TODO: This method needs to be more clever to run validations of user inputs
     //FIXME: Unsaved data from the PasswordEntryTableViewController is not getting saved although the call to the file management helper has now been reduced to 1 from the PasswordListTableViewController because the unwindSegue is now called just once. Why is the unwindSegue not called on the PasswordEntryTableViewController?
     if(_shouldExecuteAutoSaveTask) {
+        [MiscellaneousUtilities defaultInstance].cachedMasterSecret = nil;
         UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
         while (navController.viewControllers.count > 1) {
             [navController.viewControllers.lastObject.presentedViewController dismissViewControllerAnimated:NO completion:nil];

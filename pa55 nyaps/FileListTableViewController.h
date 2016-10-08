@@ -36,6 +36,7 @@
 
 #import "LabelledSwitchTableViewCell.h"
 #import "PasswordListTableViewController.h"
+#import "GeneratePasswordViewController.h"
 
 static NSString *lcFileListTableViewControllerSettingsButton = @"filelisttableviewcontroller-settings-button";
 static NSString *lcFileListTableViewControllerBackButton = @"filelisttableviewcontroller-back-button";

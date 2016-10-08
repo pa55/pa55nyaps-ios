@@ -35,6 +35,7 @@
 @interface PasswordListTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray<NSString *> *passwordDatabaseKeys;
+@property (nonatomic, strong) UISearchController *searchController;
 
 @end
 
@@ -56,6 +57,57 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.backBarButtonItem.title = NSLocalizedString(lcPasswordListTableViewControllerBackButton, nil);
     
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    
+    self.searchController.obscuresBackgroundDuringPresentation = NO;
+    
+    // Use the current view controller to update the search results.
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.searchBar.delegate = self;
+    self.searchController.delegate = self;
+    
+    [self.searchController.searchBar sizeToFit];
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    
+    // It is usually good to set the presentation context
+    self.definesPresentationContext = YES;
+    
+    
+    [self updateDatabaseKeysForcingDataReload:YES];
+}
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *searchString = [searchController.searchBar.text lowercaseString];
+    
+    // Check if the user cancelled or deleted the search term so we can display the full list instead.
+    if (![searchString isEqualToString:@""]) {
+        if(_passwordDatabaseKeys==nil) {
+            _passwordDatabaseKeys = [[NSMutableArray alloc] init];
+        }
+        [_passwordDatabaseKeys removeAllObjects];
+        [_passwordDatabase.database enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, PasswordDatabaseEntry * _Nonnull obj, BOOL * _Nonnull stop) {
+            if([[obj.tag lowercaseString] containsString:searchString] ||
+               [[obj.notes.userID lowercaseString] containsString:searchString] ||
+               [[obj.notes.serviceName lowercaseString] containsString:searchString] ||
+               [[obj.notes.serviceLink lowercaseString] containsString:searchString] ||
+               [[obj.notes.additionalInfo lowercaseString] containsString:searchString] ||
+               [searchString isEqualToString:[NSString stringWithFormat:@"%lu", (unsigned long)obj.length]] ||
+               [searchString isEqualToString:[NSString stringWithFormat:@"%lu", (unsigned long)obj.issue]]) {
+                [_passwordDatabaseKeys addObject:key];
+            }
+        }];
+        [self.tableView reloadData];
+    }
+    else {
+        [self updateDatabaseKeysForcingDataReload:YES];
+    }
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [self updateDatabaseKeysForcingDataReload:YES];
+}
+
+- (void)didDismissSearchController:(UISearchController *)searchController {
     [self updateDatabaseKeysForcingDataReload:YES];
 }
 
@@ -260,6 +312,10 @@
     if ([vc isKindOfClass:[FileListTableViewController class]]) {
         [self performSegueWithIdentifier:segidUnwindToFileList sender:self];
     }
+}
+
+- (void)dealloc {
+    [self.searchController.view removeFromSuperview];
 }
 
 - (IBAction)unwindToPasswordList:(UIStoryboardSegue*)sender {

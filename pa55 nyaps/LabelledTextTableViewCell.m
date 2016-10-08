@@ -37,6 +37,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
     [_cellTextField addTarget:self action:@selector(validateTextField:) forControlEvents:UIControlEventEditingDidEnd];
 }
 

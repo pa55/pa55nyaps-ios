@@ -608,6 +608,7 @@
     _passwordDatabase = nil;
     _databasePassword = nil;
     _databaseFile = nil;
+    [MiscellaneousUtilities defaultInstance].cachedMasterSecret = nil;
 }
 
 
