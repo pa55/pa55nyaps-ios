@@ -76,5 +76,7 @@
 			</dict>
 		</dict>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) camera use for reading QR codes.</string>
 </dict>
 </plist>
